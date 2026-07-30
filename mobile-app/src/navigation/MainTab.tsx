@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { StyleSheet, Platform, Animated } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MainTabParamList } from '@/types';
 import HomeScreen from '../screens/home/HomeScreen';
 import FriendsListScreen from '../screens/friends/FriendsListScreen';
@@ -69,6 +70,9 @@ const AnimatedProfileScreen = withTabTransition(ProfileScreen);
 
 
 export default function MainTab() {
+  const insets = useSafeAreaInsets();
+  const bottomPadding = insets.bottom > 0 ? insets.bottom : (Platform.OS === 'ios' ? 20 : 8);
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -77,7 +81,13 @@ export default function MainTab() {
         tabBarActiveTintColor: activeColor,
         tabBarInactiveTintColor: inactiveColor,
         tabBarLabelStyle: styles.tabBarLabel,
-        tabBarStyle: styles.tabBar,
+        tabBarStyle: [
+          styles.tabBar,
+          {
+            height: 54 + bottomPadding,
+            paddingBottom: bottomPadding,
+          },
+        ],
         tabBarIcon: ({ focused, color }) => {
           let iconName: keyof typeof Ionicons.glyphMap = 'home';
 
@@ -124,10 +134,8 @@ const styles = StyleSheet.create({
     backgroundColor: backgroundColor,
     borderTopWidth: 1,
     borderTopColor: '#F0EBE3',
-    height: Platform.OS === 'ios' ? 88 : 64,
     paddingHorizontal: 14,
     paddingTop: 8,
-    paddingBottom: Platform.OS === 'ios' ? 28 : 8,
     elevation: 0,
     shadowOpacity: 0,
   },
@@ -137,4 +145,5 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
 });
+
 
