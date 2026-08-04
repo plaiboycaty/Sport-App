@@ -6,6 +6,12 @@ import AuthStack from './AuthStack';
 import MainTab from './MainTab';
 import { RootStackParamList } from '@/types';
 import { ActivityIndicator, View } from 'react-native';
+import NotificationScreen from '@/screens/home/NotificationScreen';
+import LiveMatchesScreen from '@/screens/home/LiveMatchesScreen';
+import SettingsScreen from '@/screens/profile/SettingsScreen';
+import StatsScreen from '@/screens/profile/StatsScreen';
+import EditProfileScreen from '@/screens/profile/EditProfileScreen';
+
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -24,7 +30,14 @@ export default function AppNavigator() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {session ? (
-          <Stack.Screen name="Main" component={MainTab} />
+          <>
+            <Stack.Screen name="Main" component={MainTab} />
+            <Stack.Screen name="Notifications" component={NotificationScreen} />
+            <Stack.Screen name="LiveMatches" component={LiveMatchesScreen} />
+            <Stack.Screen name="Settings" component={SettingsScreen} />
+            <Stack.Screen name="Stats" component={StatsScreen} />
+            <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+          </>
         ) : (
           <Stack.Screen name="Auth" component={AuthStack} />
         )}

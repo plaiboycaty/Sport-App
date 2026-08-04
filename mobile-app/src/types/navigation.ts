@@ -16,4 +16,9 @@ export type MainTabParamList = {
 export type RootStackParamList = {
   Auth: NavigatorScreenParams<AuthStackParamList>;
   Main: NavigatorScreenParams<MainTabParamList>;
+  Notifications: undefined;
+  LiveMatches: undefined;
+  Settings: undefined;
+  Stats: undefined;
+  EditProfile: undefined;
 };
