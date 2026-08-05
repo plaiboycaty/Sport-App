@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useAuth } from '../context/AuthContext';
 import AuthStack from './AuthStack';
 import MainTab from './MainTab';
+import QRScannerScreen from '../screens/friends/QRScannerScreen';
 import { RootStackParamList } from '@/types';
 import { ActivityIndicator, View } from 'react-native';
 
@@ -24,7 +25,10 @@ export default function AppNavigator() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {session ? (
-          <Stack.Screen name="Main" component={MainTab} />
+          <>
+            <Stack.Screen name="Main" component={MainTab} />
+            <Stack.Screen name="QRScanner" component={QRScannerScreen} />
+          </>
         ) : (
           <Stack.Screen name="Auth" component={AuthStack} />
         )}
