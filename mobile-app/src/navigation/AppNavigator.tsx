@@ -33,7 +33,19 @@ export default function AppNavigator() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {session ? (
-          <Stack.Screen name="Main" component={MainTab} />
+          <>
+            <>
+            <Stack.Screen name="Main" component={MainTab} />
+            <Stack.Screen name="Notifications" component={NotificationScreen} />
+            <Stack.Screen name="LiveMatches" component={LiveMatchesScreen} />
+            <Stack.Screen name="Settings" component={SettingsScreen} />
+            <Stack.Screen name="Stats" component={StatsScreen} />
+            <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+            <Stack.Screen name="CreateTournamentStep1" component={CreateTournamentStep1Screen} />
+            <Stack.Screen name="CreateTournamentStep2" component={CreateTournamentStep2Screen} />
+          </>
+            <Stack.Screen name="QRScanner" component={QRScannerScreen} />
+          </>
         ) : (
           <Stack.Screen name="Auth" component={AuthStack} />
         )}
