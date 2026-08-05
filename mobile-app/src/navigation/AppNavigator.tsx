@@ -7,6 +7,14 @@ import MainTab from './MainTab';
 import QRScannerScreen from '../screens/friends/QRScannerScreen';
 import { RootStackParamList } from '@/types';
 import { ActivityIndicator, View } from 'react-native';
+import NotificationScreen from '@/screens/home/NotificationScreen';
+import LiveMatchesScreen from '@/screens/home/LiveMatchesScreen';
+import SettingsScreen from '@/screens/profile/SettingsScreen';
+import StatsScreen from '@/screens/profile/StatsScreen';
+import EditProfileScreen from '@/screens/profile/EditProfileScreen';
+import CreateTournamentStep1Screen from '@/screens/tournaments/CreateTournamentStep1Screen'
+import CreateTournamentStep2Screen from '@/screens/tournaments/CreateTournamentStep2Screen';
+
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -25,10 +33,7 @@ export default function AppNavigator() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {session ? (
-          <>
-            <Stack.Screen name="Main" component={MainTab} />
-            <Stack.Screen name="QRScanner" component={QRScannerScreen} />
-          </>
+          <Stack.Screen name="Main" component={MainTab} />
         ) : (
           <Stack.Screen name="Auth" component={AuthStack} />
         )}
