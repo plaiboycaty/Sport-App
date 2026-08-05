@@ -21,4 +21,6 @@ export type RootStackParamList = {
   Settings: undefined;
   Stats: undefined;
   EditProfile: undefined;
+  CreateTournamentStep1: undefined;
+  CreateTournamentStep2: undefined;
 };
