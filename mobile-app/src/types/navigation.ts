@@ -23,4 +23,5 @@ export type RootStackParamList = {
   EditProfile: undefined;
   CreateTournamentStep1: undefined;
   CreateTournamentStep2: undefined;
+  QRScanner: undefined;
 };
