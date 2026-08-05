@@ -11,6 +11,8 @@ import LiveMatchesScreen from '@/screens/home/LiveMatchesScreen';
 import SettingsScreen from '@/screens/profile/SettingsScreen';
 import StatsScreen from '@/screens/profile/StatsScreen';
 import EditProfileScreen from '@/screens/profile/EditProfileScreen';
+import CreateTournamentStep1Screen from '@/screens/tournaments/CreateTournamentStep1Screen'
+import CreateTournamentStep2Screen from '@/screens/tournaments/CreateTournamentStep2Screen';
 
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -37,6 +39,8 @@ export default function AppNavigator() {
             <Stack.Screen name="Settings" component={SettingsScreen} />
             <Stack.Screen name="Stats" component={StatsScreen} />
             <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+            <Stack.Screen name="CreateTournamentStep1" component={CreateTournamentStep1Screen} />
+            <Stack.Screen name="CreateTournamentStep2" component={CreateTournamentStep2Screen} />
           </>
         ) : (
           <Stack.Screen name="Auth" component={AuthStack} />
