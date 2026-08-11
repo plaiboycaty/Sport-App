@@ -22,6 +22,8 @@ import FriendCard from '@/components/friends/FriendCard';
 import FriendCodeBanner from '@/components/friends/FriendCodeBanner';
 import AddFriendModal from '@/components/friends/AddFriendModal';
 import FriendRequestCard from '@/components/friends/FriendRequestCard';
+import { GroupsTabContent } from '@/components/groups';
+
 
 export default function FriendsListScreen() {
   const insets = useSafeAreaInsets();
@@ -146,7 +148,7 @@ export default function FriendsListScreen() {
             renderItem={({ item }) => (
               <FriendCard friend={item} onChallenge={handleChallenge} />
             )}
-            contentContainerStyle={styles.listContent}
+            contentContainerStyle={[styles.listContent, { paddingBottom: Math.max(insets.bottom + 80, 100) }]}
             showsVerticalScrollIndicator={false}
             refreshing={refreshing}
             onRefresh={handleRefresh}
@@ -163,7 +165,7 @@ export default function FriendsListScreen() {
                 {pendingRequests.length > 0 && (
                   <View style={styles.pendingSection}>
                     <Text style={styles.pendingHeader}>
-                      LỜI MỜI KẾT BẠN DANG CHỜ ({pendingRequests.length})
+                      LỜI MỜI KẾT BẠN ĐANG CHỜ ({pendingRequests.length})
                     </Text>
                     {pendingRequests.map((req) => (
                       <FriendRequestCard
@@ -212,26 +214,21 @@ export default function FriendsListScreen() {
           />
         )
       ) : (
-        /* Tab Nhóm - Màn hình chờ */
-        <ScrollView contentContainerStyle={styles.groupsTabContent}>
-          <View style={styles.emptyContainer}>
-            <Ionicons name="people-circle-outline" size={56} color="#0061AF" />
-            <Text style={styles.groupTitle}>Tính năng Nhóm</Text>
-            <Text style={styles.emptyText}>
-              Danh sách nhóm thể thao của bạn sẽ xuất hiện ở đây.
-            </Text>
-          </View>
-        </ScrollView>
+        /* Tab Nhóm - Màn hình danh sách nhóm & gợi ý tham gia */
+        <GroupsTabContent />
       )}
 
-      {/* Nút FAB (Floating Action Button) Thêm Bạn */}
-      <TouchableOpacity
-        style={styles.fabButton}
-        activeOpacity={0.85}
-        onPress={() => setIsAddFriendModalVisible(true)}
-      >
-        <Ionicons name="add" size={28} color="#FFFFFF" />
-      </TouchableOpacity>
+      {/* Nút FAB (Floating Action Button) Thêm Bạn (chỉ hiển thị ở Tab Bạn bè) */}
+      {activeTab === 'friends' && (
+        <TouchableOpacity
+          style={[styles.fabButton, { bottom: Math.max(insets.bottom + 16, 24) }]}
+          activeOpacity={0.85}
+          onPress={() => setIsAddFriendModalVisible(true)}
+        >
+          <Ionicons name="add" size={28} color="#FFFFFF" />
+        </TouchableOpacity>
+      )}
+
 
       {/* Modal Thêm Bạn Bè */}
       <AddFriendModal

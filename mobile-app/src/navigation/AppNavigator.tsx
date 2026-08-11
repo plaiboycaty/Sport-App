@@ -14,6 +14,8 @@ import StatsScreen from '@/screens/profile/StatsScreen';
 import EditProfileScreen from '@/screens/profile/EditProfileScreen';
 import CreateTournamentStep1Screen from '@/screens/tournaments/CreateTournamentStep1Screen'
 import CreateTournamentStep2Screen from '@/screens/tournaments/CreateTournamentStep2Screen';
+import CreateGroupScreen from '@/screens/friends/CreateGroupScreen';
+import GroupDetailScreen from '@/screens/friends/GroupDetailScreen';
 
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -43,9 +45,12 @@ export default function AppNavigator() {
             <Stack.Screen name="EditProfile" component={EditProfileScreen} />
             <Stack.Screen name="CreateTournamentStep1" component={CreateTournamentStep1Screen} />
             <Stack.Screen name="CreateTournamentStep2" component={CreateTournamentStep2Screen} />
+            <Stack.Screen name="CreateGroup" component={CreateGroupScreen} />
+            <Stack.Screen name="GroupDetail" component={GroupDetailScreen} />
           </>
             <Stack.Screen name="QRScanner" component={QRScannerScreen} />
           </>
+
         ) : (
           <Stack.Screen name="Auth" component={AuthStack} />
         )}

@@ -64,11 +64,23 @@ export const authService = {
    * Lấy thông tin chi tiết Profile của user từ DB
    */
   async getUserProfile(userId: string): Promise<UserProfile | null> {
-    const { data, error } = await supabase
+    let { data, error } = await supabase
       .from('profiles')
       .select('*')
       .eq('id', userId)
       .single();
+    
+    // Xử lý lỗi lệch đồng hồ hệ thống (JWT issued at future - PGRST303)
+    if (error && error.code === 'PGRST303') {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const retry = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', userId)
+        .single();
+      data = retry.data;
+      error = retry.error;
+    }
     
     if (error && error.code !== 'PGRST116') {
       console.error('Lỗi khi lấy thông tin profile:', error);

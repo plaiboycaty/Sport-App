@@ -53,9 +53,9 @@ export default function QRScannerScreen({ navigation }: QRScannerScreenProps) {
   const panY = useRef(new Animated.Value(0)).current;   // animated.value dùng để lưu trữ giá trị theo thời gian thực
 
   const panResponder = useRef(
-    PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onMoveShouldSetPanResponder: (_, gestureState) => gestureState.dy > 5,
+    PanResponder.create({   // lắng nghe thao tác tay 
+      onStartShouldSetPanResponder: () => true,   //BẮT ĐẦU xử lý sự kiện
+      onMoveShouldSetPanResponder: (_, gestureState) => gestureState.dy > 5,  // khi bắt đầu kéo hơn 5px mới xử lý
       onPanResponderMove: (_, gestureState) => {
         if (gestureState.dy > 0) {
           panY.setValue(gestureState.dy);
