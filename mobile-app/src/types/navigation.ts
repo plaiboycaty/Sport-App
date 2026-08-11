@@ -23,4 +23,8 @@ export type RootStackParamList = {
   EditProfile: undefined;
   CreateTournamentStep1: undefined;
   CreateTournamentStep2: undefined;
+  QRScanner: undefined;
+  CreateGroup: undefined;
+  GroupDetail: { groupId?: string; groupName?: string };
 };
+

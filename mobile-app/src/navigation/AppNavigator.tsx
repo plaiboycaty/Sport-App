@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useAuth } from '../context/AuthContext';
 import AuthStack from './AuthStack';
 import MainTab from './MainTab';
+import QRScannerScreen from '../screens/friends/QRScannerScreen';
 import { RootStackParamList } from '@/types';
 import { ActivityIndicator, View } from 'react-native';
 import NotificationScreen from '@/screens/home/NotificationScreen';
@@ -13,6 +14,8 @@ import StatsScreen from '@/screens/profile/StatsScreen';
 import EditProfileScreen from '@/screens/profile/EditProfileScreen';
 import CreateTournamentStep1Screen from '@/screens/tournaments/CreateTournamentStep1Screen'
 import CreateTournamentStep2Screen from '@/screens/tournaments/CreateTournamentStep2Screen';
+import CreateGroupScreen from '@/screens/friends/CreateGroupScreen';
+import GroupDetailScreen from '@/screens/friends/GroupDetailScreen';
 
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -33,6 +36,7 @@ export default function AppNavigator() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {session ? (
           <>
+            <>
             <Stack.Screen name="Main" component={MainTab} />
             <Stack.Screen name="Notifications" component={NotificationScreen} />
             <Stack.Screen name="LiveMatches" component={LiveMatchesScreen} />
@@ -41,7 +45,12 @@ export default function AppNavigator() {
             <Stack.Screen name="EditProfile" component={EditProfileScreen} />
             <Stack.Screen name="CreateTournamentStep1" component={CreateTournamentStep1Screen} />
             <Stack.Screen name="CreateTournamentStep2" component={CreateTournamentStep2Screen} />
+            <Stack.Screen name="CreateGroup" component={CreateGroupScreen} />
+            <Stack.Screen name="GroupDetail" component={GroupDetailScreen} />
           </>
+            <Stack.Screen name="QRScanner" component={QRScannerScreen} />
+          </>
+
         ) : (
           <Stack.Screen name="Auth" component={AuthStack} />
         )}
